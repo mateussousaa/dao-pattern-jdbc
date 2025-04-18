@@ -16,12 +16,15 @@ public class Seller implements Serializable {
     private Date birthDate;
     private double baseSalary;
 
-    public Seller(int id, String name, String email, Date birthDate, double baseSalary) {
+    private Department department;
+
+    public Seller(int id, String name, String email, Date birthDate, double baseSalary, Department department) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.birthDate = birthDate;
         this.baseSalary = baseSalary;
+        this.department = department;
     }
 
     public int getId() {
@@ -64,6 +67,14 @@ public class Seller implements Serializable {
         this.baseSalary = baseSalary;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -84,6 +95,7 @@ public class Seller implements Serializable {
                 ", email='" + email + '\'' +
                 ", birthDate=" + birthDate +
                 ", baseSalary=" + baseSalary +
+                ", department=" + department +
                 '}';
     }
 }
