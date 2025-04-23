@@ -1,29 +1,18 @@
 import db.DB;
+import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
+import model.entities.Department;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Connection conn = DB.getConnection();
-        Statement st = null;
-        ResultSet rs = null;
-
-        try {
-            st = conn.createStatement();
-            rs = st.executeQuery("SELECT * FROM department");
-
-            while(rs.next()) {
-                System.out.println(rs.getInt("Id") + " " + rs.getString("Name"));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        DepartmentDao departmentDao = DaoFactory.createDepartmentDao(DB.getConnection());
 
         DB.closeConnection();
-        DB.closeResultSet(rs);
-        DB.closeStatement(st);
     }
 }
